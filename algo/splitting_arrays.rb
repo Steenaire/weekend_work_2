@@ -1,7 +1,16 @@
 # Complete the method called split_array, which two parameters, the first being an array, and the second being an integer. The method will then create an array of other arrays, each one being the size of the indicated by the second parameter. See the driver code for examples.
 
 def split_array(array, array_size)
-
+  array_of_arrays = []
+  split_numbers = []
+  while array.any?
+    array_size.times do |n|
+      split_numbers << array.shift
+    end
+    array_of_arrays << split_numbers
+    split_numbers = []
+  end
+  return array_of_arrays
 end
 
 # Driver code - don't touch anything below this line.
