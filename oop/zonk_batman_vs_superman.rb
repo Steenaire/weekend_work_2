@@ -24,21 +24,21 @@ class Superhero
     @attack = hero_hash[:attack]
     @alive = true
     @has_special_tool = false
+    @attack_multiplier = 1
   end
 
   def hit(enemy)
-    if @has_special_tool == true
-      enemy.hitpoints-=(@attack*3)
-    else
-      enemy.hitpoints-=@attack
-    end
-    if enemy.hitpoints < 1
-      enemy.alive = false
-    end
+    enemy.hitpoints-=(@attack*@attack_multiplier)
+    enemy.is_alive?
   end
 
   def grab_tool
     @has_special_tool = true
+    @attack_multiplier = 3
+  end
+
+  def is_alive?
+    @alive = false if hitpoints < 1
   end
 
 end
